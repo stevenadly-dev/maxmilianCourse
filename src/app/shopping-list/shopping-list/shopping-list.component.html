@@ -1,0 +1,14 @@
+<!-- <app-shopping-list-edit [itemInput]="selectedItem"></app-shopping-list-edit> -->
+<router-outlet></router-outlet>
+
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let ingredient of ingredients" (click)="showItem(ingredient)">
+    {{ingredient.name}},{{ingredient.amount}}
+  </li>
+</ul>
+
+<a [routerLink]="['/shoppinglist','edit']">edit</a>
+<a [routerLink]="['/shoppinglist','edit',31]">31</a>
+<a [routerLink]="['/shoppinglist','edit',32]" [fragment]="'32'">32</a>
+<a [routerLink]="['/shoppinglist','edit',33]" [queryParams]="{page:33,name:'steven','age':33}">33</a>
+<button class="btn btn-danger" (click)="reloadServer(32)"> reload server</button>

@@ -1,0 +1,15 @@
+<!-- <app-recipe-item (fromChild)='el= $event'></app-recipe-item>
+{{el}} -->
+
+<div class="row">
+  <div class="col-lg-4" *ngFor="let recipe of recipes" (click)="showDetails(recipe)">
+    <app-recipe-item [recipeitem]="recipe"></app-recipe-item>
+  </div>
+</div>
+
+
+
+<!-- <h2 #helloElemet> hello to see view child</h2> -->
+
+<button class="btn btn-primary" (click)="login()">login</button>
+<button class="btn btn-primary" (click)="logout()">logout</button>

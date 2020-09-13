@@ -1,0 +1,20 @@
+<div class="card" *ngIf="recipeDetail">
+  <img class="card-img-top" [src]="recipeDetail.imgPath" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">{{recipeDetail.name}}</h5>
+    <p class="card-text">{{recipeDetail.description}}</p>
+  </div>
+
+  <ul *ngFor="let ingredient of recipeDetail.ingrediants">
+    <li>
+      {{ingredient.name}}== {{ingredient.amount}}
+    </li>
+  </ul>
+
+  <div class="btn-group" role="group" aria-label="Basic example">
+    <button type="button" class="btn btn-secondary" (click)="addToCart(recipeDetail)">to Shopping List</button>
+    <button type="button" class="btn btn-secondary">Edit Recipe</button>
+    <button type="button" class="btn btn-secondary">Delete Recipe</button>
+  </div>
+
+</div>

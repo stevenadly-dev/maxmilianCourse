@@ -1,0 +1,10 @@
+<p appAppHighlight [hoverColor]="'red'">footer works!</p>
+<h1 #myh1>hello from foooter </h1>
+
+<div *appUnless="isFalse">unless</div>
+<ul [ngSwitch]="letter">
+  <li *ngSwitchCase="'a'">apple</li>
+  <li *ngSwitchCase="'b'">banana</li>
+  <li *ngSwitchCase="'c'">cat</li>
+  <li *ngSwitchDefault>other...</li>
+</ul>
