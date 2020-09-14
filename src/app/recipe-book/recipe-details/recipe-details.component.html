@@ -13,8 +13,12 @@
 
   <div class="btn-group" role="group" aria-label="Basic example">
     <button type="button" class="btn btn-secondary" (click)="addToCart(recipeDetail)">to Shopping List</button>
-    <button type="button" class="btn btn-secondary">Edit Recipe</button>
+    <a [routerLink]="['/recipes',recipeDetailId,'edit']" routerLinkActive="router-link-active" type="button"
+      class="btn btn-secondary">Edit
+      Recipe</a>
     <button type="button" class="btn btn-secondary">Delete Recipe</button>
   </div>
 
 </div>
+
+<a [routerLink]="['/recipes','new']" routerLinkActive="router-link-active" class="btn btn-primary">add New Recipe</a>

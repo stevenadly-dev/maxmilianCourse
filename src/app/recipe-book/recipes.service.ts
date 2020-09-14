@@ -3,6 +3,7 @@ import { ShoppingListService } from "./../shopping-list/shopping-list.service";
 import { Injectable, Output, EventEmitter } from "@angular/core";
 import { recipe } from "./recipe.model";
 import { Router, ActivatedRoute } from "@angular/router";
+// import { threadId } from "worker_threads";
 
 @Injectable({
   providedIn: "root",
@@ -59,6 +60,10 @@ export class RecipesService {
     return this.recipes;
   }
 
+  getRecipeDetails(i: number) {
+    return this.recipes[i];
+  }
+
   addToCart(recipe: recipe) {
     debugger;
     let ifExist = this.ShoppingListService.ingredients.find((el) => {
@@ -69,10 +74,11 @@ export class RecipesService {
       let index = this.ShoppingListService.ingredients.indexOf(ifExist);
       this.ShoppingListService.ingredients[index].amount =
         this.ShoppingListService.ingredients[index].amount + 1;
-      this.router.navigate(["shopping-list"], {
+      this.router.navigate(["shoppinglist"], {
         relativeTo: this.activedRoute,
       });
     } else {
+      debugger;
       this.ShoppingListService.getelementAndPush({
         name: recipe.name,
         amount: 1,

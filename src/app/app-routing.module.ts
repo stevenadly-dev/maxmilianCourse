@@ -1,3 +1,5 @@
+import { RecipeEditComponent } from "./recipe-book/recipe-edit/recipe-edit.component";
+import { RecipeDetailsComponent } from "./recipe-book/recipe-details/recipe-details.component";
 import { canDeactivateGuard } from "./canDeactivate.guard";
 import { ShoppingListEditComponent } from "./shopping-list/shopping-list-edit/shopping-list-edit.component";
 import { NgModule } from "@angular/core";
@@ -6,10 +8,22 @@ import { recipeBook } from "./recipe-book/recipes/recipes.component";
 import { ShoppingListComponent } from "./shopping-list/shopping-list/shopping-list.component";
 import { authGuard } from "./auth.guard";
 import { NotFoundComponent } from "./shared/not-found/not-found.component";
+import { NoRecipeDetailsComponent } from "./recipe-book/no-recipe-details/no-recipe-details.component";
 
 const routes: Routes = [
-  { path: "", component: recipeBook, pathMatch: "full" },
-  { path: "recipes", component: recipeBook },
+  { path: "", redirectTo: "/recipes", pathMatch: "full" },
+  {
+    path: "recipes",
+    component: recipeBook,
+    // outlet: "myoutlet",
+
+    children: [
+      { path: "", component: NoRecipeDetailsComponent },
+      { path: "new", component: RecipeEditComponent },
+      { path: ":id", component: RecipeDetailsComponent },
+      { path: ":id/edit", component: RecipeEditComponent },
+    ],
+  },
   {
     path: "shoppinglist",
     component: ShoppingListComponent,
@@ -28,7 +42,7 @@ const routes: Routes = [
   {
     path: "**",
     component: NotFoundComponent,
-    data: { errMsg: "page not found ya 7beby" },
+    data: { errMsg: "page not found" },
   },
 ];
 

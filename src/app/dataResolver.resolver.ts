@@ -13,6 +13,7 @@ export class dataResolver implements Resolve<recipeData> {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<recipeData> | Promise<recipeData> | recipeData {
-    // return route.data['']
+    debugger;
+    return route.data["errMsg"];
   }
 }

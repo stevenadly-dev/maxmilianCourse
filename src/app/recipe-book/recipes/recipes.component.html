@@ -1,15 +1,16 @@
-<!-- <app-recipe-item (fromChild)='el= $event'></app-recipe-item>
-{{el}} -->
-
 <div class="row">
-  <div class="col-lg-4" *ngFor="let recipe of recipes" (click)="showDetails(recipe)">
-    <app-recipe-item [recipeitem]="recipe"></app-recipe-item>
+  <div class="col-md-8">
+    <div class="row">
+      <div class="col-lg-4" *ngFor="let recipe of recipes;let i= index;" [routerLink]="['/recipes',i]">
+        <app-recipe-item [recipeitem]="recipe" routerLinkActive="active"></app-recipe-item>
+      </div>
+    </div>
+
+    <!-- <app-recipe-list></app-recipe-list> -->
+  </div>
+  <div class="col-md-4">
+
+    <!-- hoa 3l4aan yfhm 2n dh tb3 l children lazm l router outelt ykon goa l component bta3y -->
+    <router-outlet></router-outlet>
   </div>
 </div>
-
-
-
-<!-- <h2 #helloElemet> hello to see view child</h2> -->
-
-<button class="btn btn-primary" (click)="login()">login</button>
-<button class="btn btn-primary" (click)="logout()">logout</button>

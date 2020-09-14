@@ -24,6 +24,8 @@ import { ShoppingListService } from "./shopping-list/shopping-list.service";
 import { authGuard } from "./auth.guard";
 import { AuthService } from "./auth.service";
 import { NotFoundComponent } from './shared/not-found/not-found.component';
+import { NoRecipeDetailsComponent } from './recipe-book/no-recipe-details/no-recipe-details.component';
+import { RecipeEditComponent } from './recipe-book/recipe-edit/recipe-edit.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { NotFoundComponent } from './shared/not-found/not-found.component';
     appUnlessDirective,
     DropdownDirective,
     NotFoundComponent,
+    NoRecipeDetailsComponent,
+    RecipeEditComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [
