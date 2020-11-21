@@ -28,7 +28,6 @@ export class AppHighlightDirective implements OnInit {
   @HostListener("mouseleave") mouseleave(e: Event) {
     // this.el.nativeElement.style.background = "transparent";
     this.render.setStyle(this.el.nativeElement, "background", "transparent");
-
     this.txtcolor = "black";
 
     // this.

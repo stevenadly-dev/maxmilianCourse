@@ -1,1 +1,69 @@
-<h2>{{mainMsg}}<span *ngIf="ID">{{ID}}</span></h2>
+<!-- <h2>{{mainMsg}}<span *ngIf="ID">{{ID}}</span></h2> -->
+<form [formGroup]="recipeEditForm" (ngSubmit)="onSubmit()">
+  <div class="row mt-2">
+    <div class="col-md-12">
+      <button class="btn btn-success" type="submit" [disabled]="recipeEditForm.invalid">save</button>
+      <button class="btn btn-danger" (click)="onCancel()">cancel</button>
+
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" class="form-control" formControlName="name" placeholder="">
+      </div>
+
+
+
+      <div class="form-group">
+        <label for="imageUrl">imgPath</label>
+        <input type="text" name="imgPath" id="imageUrl" class="form-control" formControlName="imgPath" #imgPath
+          placeholder="">
+        <img [src]="imgPath.value" class="w-100 mt-2" alt="">
+      </div>
+
+
+
+
+
+      <div class="form-group">
+        <label for="description">description</label>
+        <textarea type="text" name="description" id="description" class="form-control" formControlName="description"
+          placeholder=""></textarea>
+      </div>
+
+
+      <hr>
+
+
+      <div class="row" formArrayName="ingrediants" *ngFor="let ingredientCtrl of getRecipeIngredients;let i = index;">
+
+        <ng-container [formGroupName]="i">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="ingredientName">ingredient name</label>
+              <input type="text" name="ingredientName" id="ingredientName" class="form-control" placeholder=""
+                formControlName="name">
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-group">
+              <label for="ingredientAmount">ingredient amount</label>
+              <input type="number" name="ingredientAmount" id="ingredientAmount" class="form-control" placeholder=""
+                formControlName="amount">
+            </div>
+          </div>
+          <div class="col-5">
+            <button class="btn btn-danger" (click)="onDeleteIngredient(i)">delete</button>
+          </div>
+        </ng-container>
+
+      </div>
+
+      <button type="button" class="btn btn-primary" (click)="onAddIngrediant()">add ingredient</button>
+
+
+
+    </div>
+  </div>
+</form>
+
+=================
+{{recipeEditForm.value|json}}

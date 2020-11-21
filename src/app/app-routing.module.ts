@@ -1,3 +1,4 @@
+import { getRecipesResolver } from "./shared/get-recipes.resolver";
 import { RecipeEditComponent } from "./recipe-book/recipe-edit/recipe-edit.component";
 import { RecipeDetailsComponent } from "./recipe-book/recipe-details/recipe-details.component";
 import { canDeactivateGuard } from "./canDeactivate.guard";
@@ -20,8 +21,16 @@ const routes: Routes = [
     children: [
       { path: "", component: NoRecipeDetailsComponent },
       { path: "new", component: RecipeEditComponent },
-      { path: ":id", component: RecipeDetailsComponent },
-      { path: ":id/edit", component: RecipeEditComponent },
+      {
+        path: ":id",
+        component: RecipeDetailsComponent,
+        // resolve: { recipes: getRecipesResolver },
+      },
+      {
+        path: ":id/edit",
+        component: RecipeEditComponent,
+        resolve: { recipes: getRecipesResolver },
+      },
     ],
   },
   {

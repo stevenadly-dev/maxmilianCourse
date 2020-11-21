@@ -3,3 +3,12 @@
 .open>.dropdown-menu {
   display: block;
 }
+
+.form-control.ng-invalid.ng-touched {
+  border: 2px solid red;
+  color: red;
+}
+
+.error-span {
+  color: red;
+}

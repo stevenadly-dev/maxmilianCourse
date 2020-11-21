@@ -1,54 +1,21 @@
+import { StoreDataService } from "./../shared/store-data.service";
 import { ingrediant } from "src/app/shared/models/ingrediant.model";
 import { ShoppingListService } from "./../shopping-list/shopping-list.service";
 import { Injectable, Output, EventEmitter } from "@angular/core";
 import { recipe } from "./recipe.model";
 import { Router, ActivatedRoute } from "@angular/router";
+import { Subject } from "rxjs";
 // import { threadId } from "worker_threads";
 
 @Injectable({
   providedIn: "root",
 })
 export class RecipesService {
-  recipes: recipe[] = [
-    {
-      name: "pasta",
-      description: "lorem lorem lorem",
-      imgPath: "assets/recipe.jpg",
-      ingrediants: [
-        { name: "eggs", amount: 2 },
-        { name: "milk", amount: 1 },
-        { name: "cheese", amount: 3 },
-      ],
-    },
-    {
-      name: "burger",
-      description: "lorem lorem lorem",
-      imgPath: "assets/recipe.jpg",
-      ingrediants: [
-        { name: "meet", amount: 3 },
-        { name: "oninion", amount: 1 },
-      ],
-    },
-    {
-      name: "pizza",
-      description: "lorem lorem lorem",
-      imgPath: "assets/recipe.jpg",
-      ingrediants: [
-        { name: "chicken", amount: 2 },
-        { name: "floor", amount: 100 },
-      ],
-    },
-    {
-      name: "omlet",
-      description: "lorem lorem lorem",
-      imgPath: "assets/recipe.jpg",
-      ingrediants: [
-        { name: "egg", amount: 2 },
-        { name: "butter", amount: 100 },
-      ],
-    },
-  ];
+  recipes: recipe[] = [];
+
   @Output() outputrecipe: EventEmitter<recipe> = new EventEmitter<recipe>();
+  searchSubject: Subject<string> = new Subject<string>();
+  allRecipesSubject: Subject<recipe[]> = new Subject<recipe[]>();
 
   constructor(
     private ShoppingListService: ShoppingListService,
@@ -57,11 +24,25 @@ export class RecipesService {
   ) {}
 
   getAllRecipes() {
+    // this.recipes=
     return this.recipes;
+    // this.storeDataService.getData();
+  }
+
+  editRecipe(index: number, recipe: recipe) {
+    this.recipes[index] = recipe;
   }
 
   getRecipeDetails(i: number) {
     return this.recipes[i];
+  }
+
+  addRecipes(recipe: recipe) {
+    this.recipes.push(recipe);
+  }
+
+  deleteRecipe(index: number) {
+    this.recipes.splice(index, 1);
   }
 
   addToCart(recipe: recipe) {
@@ -84,5 +65,18 @@ export class RecipesService {
         amount: 1,
       });
     }
+  }
+
+  countRecipies() {
+    return this.recipes.length;
+  }
+
+  searchWith(text: string) {
+    this.searchSubject.next(text);
+  }
+
+  setRecipies(recipes: recipe[]) {
+    this.recipes = recipes;
+    this.allRecipesSubject.next(this.recipes);
   }
 }

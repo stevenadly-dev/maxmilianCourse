@@ -16,7 +16,7 @@
     <a [routerLink]="['/recipes',recipeDetailId,'edit']" routerLinkActive="router-link-active" type="button"
       class="btn btn-secondary">Edit
       Recipe</a>
-    <button type="button" class="btn btn-secondary">Delete Recipe</button>
+    <button type="button" class="btn btn-secondary" (click)="deleteRecipe(recipeDetailId)">Delete Recipe</button>
   </div>
 
 </div>

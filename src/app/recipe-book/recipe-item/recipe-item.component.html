@@ -1,7 +1,8 @@
-<div class="card">
+<div class="card mt-2">
   <img class="card-img-top" [src]="recipeitem.imgPath" alt="Card image cap">
   <div class="card-body">
-    <h5 class="card-title">{{recipeitem.name}}</h5>
+    <h5 class="card-title">{{recipeitem.name | uppercase | shorten:'recipe':10}}</h5>
+    <p>{{currentDate |date :'fullDate' }}</p>
     <p class="card-text">{{recipeitem.description}}</p>
   </div>
 </div>

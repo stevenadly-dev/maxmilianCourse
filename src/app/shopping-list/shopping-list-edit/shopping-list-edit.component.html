@@ -1,27 +1,39 @@
-<form>
+<form #shoppingListForm="ngForm" (ngSubmit)="onSubmit(shoppingListForm.value)">
+
 
 
   <div class="row">
     <div class="col-md-8">
       <div class="form-group">
         <label for="exampleInputPassword1">name</label>
-        <input type="text" class="form-control" id="name" placeholder="name" [value]="itemInput?.name" #itemName>
+        <input type="text" class="form-control" id="name" placeholder="name" name="name" ngModel #itemName="ngModel"
+          required>
+        <span class="error-span" *ngIf="itemName.invalid&&itemName.touched">
+          it is required item
+        </span>
       </div>
     </div>
-    <div class="col-md-4">
+    <div class=" col-md-4">
       <div class="form-group">
         <label for="amount">amount</label>
-        <input type="number" class="form-control" id="amount" placeholder="amount" [value]="itemInput?.amount"
-          #itemAmount>
+        <input type="number" class="form-control" id="amount" placeholder="amount" name="amount" ngModel
+          #itemAmount="ngModel" required [pattern]="'^[0-9]+[0-9]*$'">
+        <ul class="span-error" *ngIf="itemAmount.touched&&itemAmount.invalid">
+          <li *ngIf="itemAmount.errors['required']">
+            it's required
+          </li>
+          <li *ngIf="itemAmount.errors['pattern']">
+            positive number is available only
+          </li>
+        </ul>
       </div>
     </div>
   </div>
 
 
-
   <div class="btn-group" role="group" aria-label="Basic example">
-    <button type="button" class="btn btn-secondary" (click)="addNewItem()">Add</button>
-    <button type="button" class="btn btn-secondary">Delete</button>
-    <button type="button" class="btn btn-secondary">Clear</button>
+    <button type="submit" class="btn btn-secondary">{{currentMode!=='editmode' ?'Add' :'edit'}}</button>
+    <button type="button" class="btn btn-secondary" *ngIf="currentMode=='editmode'" (click)="onDelete()">Delete</button>
+    <button type="button" class="btn btn-secondary" (click)="onClear()">Clear</button>
   </div>
 </form>

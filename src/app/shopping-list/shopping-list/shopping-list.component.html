@@ -2,7 +2,7 @@
 <router-outlet></router-outlet>
 
 <ul class="list-group">
-  <li class="list-group-item" *ngFor="let ingredient of ingredients" (click)="showItem(ingredient)">
+  <li class="list-group-item" *ngFor="let ingredient of ingredients; let i = index;" (click)="onEditIngredient(i)">
     {{ingredient.name}},{{ingredient.amount}}
   </li>
 </ul>

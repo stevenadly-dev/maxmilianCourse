@@ -7,8 +7,11 @@ import { Component, OnInit, Output, EventEmitter, Input } from "@angular/core";
 })
 export class RecipeItemComponent implements OnInit {
   @Input() recipeitem;
+  currentDate: Date;
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.currentDate = new Date();
+  }
 }
